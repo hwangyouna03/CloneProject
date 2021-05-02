@@ -1,0 +1,243 @@
+:root {
+    /*color*/
+    --white-color:#fff;
+    --black-color:#140a00;
+    --blue-color:#045fd4;
+    --red-color:#ff0000;
+    --grey-dark-color:#909090;
+    --grey-light-color: #e0e0e0;
+    /*size*/
+    --padding: 12px;
+    --avartar-size:36px;
+    /*Font size*/
+    --font-large:18px;
+    --font-medium: 14px;
+    --font-small:12px;
+    --font-micro:10px;
+}
+
+/*전체 적용*/
+*{
+    padding:0;
+    margin:0;
+    box-sizing:border-box;
+}
+body{
+    font-family:Roboto;
+}
+
+ul {
+    list-style: none;
+}
+
+button,
+button:focus {
+    border: none;
+    cursor: pointer;
+    outline: none;
+}
+/*Header*/
+header {
+    display:flex;
+    justify-content:space-between; /*양 옆으로 아이콘 지정*/
+    padding: var(--padding);
+    background-color:var(--black-color);
+    color: var(--white-color); /*font*/
+}
+header .logo {
+    font-size:var(--font-large);
+}
+header .logo i {
+    color: var(--red-color)
+}
+
+header .icons .fa-search {
+    margin-right:var(--padding);
+}
+/*SASS & LESS Library
+heaer {
+    .logo {
+
+    }
+    .icons {
+
+    }
+}*/
+
+/*Video Player 반응형*/
+.player {
+    /*영상을 top: 0위치에 고정*/
+    position:sticky; 
+    top: 0;
+
+    text-align: center;
+    background-color:var(--black-color);
+}
+.player video {
+    width : 100%;
+    height: 100%;
+    max-width: 100px; /*반응형 최대 크기*/
+}
+
+body >.info {
+    padding: var(--padding);
+}
+
+.info .metadata .hashtags {
+    display:flex;
+    font-size:var(--font-small);
+    color:var(--blue-color);
+}
+.info .metadata .hashtags li {
+    margin-right: var(--padding);
+}
+.info .metadata .titleAndButton {
+    display: flex;
+}
+.info .metadata .titleAndButton .title {
+    font-size:var(--font-medium);
+    margin-right:var(--padding);
+}
+.info .metadata .titleAndButton .title.clamp {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp:2; /*youtube 설명글 두줄로 제한*/
+    overflow:hidden;
+}
+.info .metadata .titleAndButton .moreBtn {
+    height:100%;
+    transition: transform 300ms ease-in-out;
+}
+.info .metadata .titleAndButton .moreBtn.click {
+    transform : rotate(180deg); /*클릭했을 때 180도로 바뀜*/
+}
+.info .views {
+    font-size:var(--font-small);
+    color:var(--grey-dark-color);
+}
+/*Action button*/
+.info .actions {
+    display:flex;
+    justify-content:space-around;
+    margin: var(--padding) 0;
+}
+.info .actions button {
+    display: flex;
+    flex-direction:column;
+    font-size:var(--font-small);
+    color: var(--grey-dark-color);
+}
+
+.info .actions button i {
+    margin: 0 auto;
+    margin-bottom: calc(var(--padding)/2);
+    font-size: 16px;
+}
+
+.info .actions button i.active {
+    color: var(--black-color);
+}
+
+/*채널 정보*/
+.channel {
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid var(--grey-light-color);
+    border-bottom: 1px solid var(--grey-light-color);
+}
+.channel .metadata {
+    display: flex;
+    align-items:center; 
+}
+.channel .metadata .info {
+    display:flex;
+    flex-direction: column;
+}
+.channel .metadata img {
+    width: var(--avartar-size);
+    height: var(--avartar-size);
+    border-radius:50%;
+}
+
+.channel .metadata .info {
+    display: flex;
+}
+
+.channel .metadata .info .name {
+    font-size: var(--font-medium);
+}
+
+.channel .metadata .info .subscribers {
+    font-size:(var(--font-small));
+    color: var(--grey-dark-color);
+}
+
+.channel .subscribers {
+    text-transform: uppercase; /*대문자로*/
+    color: var(--red-color);
+    font-size: var(--font-medium);
+}
+
+/*upNext*/
+.upNext {
+    padding: 0 var(--padding);
+}
+
+.upNext > .title { /*자식 아이들*/
+    font-size: var(--font-medium);
+    color: var(--grey-dark-color);
+    margin-bottom: calc(var(--padding)/2);
+}
+
+/*item를 flexbox를 이용하여 사진, 설명글, 버튼으로 비율을 나눈다. */
+.upNext .item {
+    display: flex;
+    margin-top: var(--padding);
+}
+.upNext .item img { /*줄어들때나 늘어날때 각각  1 1 로 비율은 35%*/ 
+    flex: 1 1 35%;
+    margin-right: var(--padding);
+
+}
+.upNext .item .img img {
+    width: 100%; /*사진 반응형 X ->크기 고정*/
+}
+.upNext .item .info {
+    flex: 1 1 60%;
+}
+
+.upNext .item .moreBtn {
+    height: 100%;
+    flex: 1 1 5%;
+}
+
+.upNext .item .info {
+    display: flex;
+    flex-direction: cloumn;
+}
+
+.upNext .item .info .title {
+    font-size: var(--font-small);
+}
+
+.upNext .item .info .name,
+.upNext .item .info .views {
+    font-size: var(--font-micro);
+    color: var(--grey-dark-color);
+}
+.upNext .item{
+    width:800px;
+    height:300px;
+}
+
+.infoAndUpNext {
+    display: flex;
+    flex-direction:column;
+}
+
+@media screen and (min-width: 768px) {
+    .infoAndUpNext {
+        flex-direction: row;
+        margin: var(--padding);
+    }
+}
